@@ -1,3 +1,6 @@
-/home/rsime/dev/netix-backend/src/main/java/com/netix/demo/CorsConfig.java
-/home/rsime/dev/netix-backend/src/main/java/com/netix/demo/HelloController.java
-/home/rsime/dev/netix-backend/src/main/java/com/netix/demo/DemoApplication.java
+/home/rsime/dev/netix-proj/netix-backend/src/main/java/com/netix/netixbackend/controllers/StatusController.java
+/home/rsime/dev/netix-proj/netix-backend/src/main/java/com/netix/netixbackend/NetixBackendApplication.java
+/home/rsime/dev/netix-proj/netix-backend/src/main/java/com/netix/netixbackend/controllers/VersionController.java
+/home/rsime/dev/netix-proj/netix-backend/src/main/java/com/netix/netixbackend/controllers/HelloController.java
+/home/rsime/dev/netix-proj/netix-backend/src/main/java/com/netix/netixbackend/controllers/PingController.java
+/home/rsime/dev/netix-proj/netix-backend/src/main/java/com/netix/netixbackend/controllers/TimeController.java

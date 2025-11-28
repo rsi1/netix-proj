@@ -1,0 +1,9 @@
+{
+    "cSpell.words": [
+        "netix"
+    ],
+    "files.watcherExclude": {
+        "**/target": true
+    },
+    "java.debug.settings.onBuildFailureProceed": true
+}
