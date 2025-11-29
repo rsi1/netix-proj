@@ -1,0 +1,19 @@
+{
+  "name": "NETIX Dev Environment",
+  "dockerFile": "Dockerfile",
+  "context": "..",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
+        "vscjava.vscode-java-pack"
+      ]
+    }
+  },
+
+  "postCreateCommand": "bash .devcontainer/post-create.sh",
+
+  "remoteUser": "vscode"
+}
