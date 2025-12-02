@@ -1,4 +1,3 @@
--- Active: 1764612427089@@192.168.3.31@3306@demo
 package cz.netix.netixbackend.service;
 
 import java.util.List;
