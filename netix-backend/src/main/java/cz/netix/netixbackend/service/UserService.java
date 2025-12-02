@@ -1,21 +1,35 @@
+-- Active: 1764612427089@@192.168.3.31@3306@demo
 package cz.netix.netixbackend.service;
 
-import  cz.netix.netixbackend.api.user;
-import  cz.netix.netixbackend.repository.UserRepository;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
+
+import cz.netix.netixbackend.model.User;
+import cz.netix.netixbackend.repository.UserRepository;
 
 @Service
 public class UserService {
-    private final UserRepository repo;
 
-    public UserService(UserRepository repo) {
-        this.repo = repo;
+    private final UserRepository repository;
+
+    public UserService(UserRepository repository) {
+        this.repository = repository;
     }
 
-    public User getUserById(Long id) {
-        return repo.findById(id).orElse(null);
+    public List<User> findAll() {
+        return repository.findAll();
     }
-    public User  save(User user) {
-        return repo.save(user);
+
+    public User findById(Long id) {
+        return repository.findById(id).orElse(null);
+    }
+
+    public User save(User user) {
+        return repository.save(user);
+    }
+
+    public void delete(Long id) {
+        repository.deleteById(id);
     }
 }

@@ -1,10 +1,7 @@
 /home/rsime/dev/netix-proj/netix-backend/src/main/java/cz/netix/netixbackend/model/User.java
-/home/rsime/dev/netix-proj/netix-backend/src/main/java/cz/netix/netixbackend/service/ProductService.java
 /home/rsime/dev/netix-proj/netix-backend/src/main/java/cz/netix/netixbackend/NetixBackendApplication.java
 /home/rsime/dev/netix-proj/netix-backend/src/main/java/cz/netix/netixbackend/model/Product.java
 /home/rsime/dev/netix-proj/netix-backend/src/main/java/cz/netix/netixbackend/repository/UserRepository.java
 /home/rsime/dev/netix-proj/netix-backend/src/main/java/cz/netix/netixbackend/controller/UserController.java
-/home/rsime/dev/netix-proj/netix-backend/src/main/java/cz/netix/netixbackend/controller/ProductController.java
 /home/rsime/dev/netix-proj/netix-backend/src/main/java/cz/netix/netixbackend/api/HelloController.java
-/home/rsime/dev/netix-proj/netix-backend/src/main/java/cz/netix/netixbackend/repository/ProductRepository.java
 /home/rsime/dev/netix-proj/netix-backend/src/main/java/cz/netix/netixbackend/service/UserService.java
