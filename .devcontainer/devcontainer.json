@@ -3,17 +3,30 @@
   "dockerFile": "Dockerfile",
   "context": "..",
 
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+
+  "mounts": [
+    "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
+  ],
+
   "customizations": {
     "vscode": {
       "extensions": [
-        "esbenp.prettier-vscode",
+        "vscjava.vscode-java-pack",
+        "redhat.java",
+        "vscjava.vscode-maven",
+        "vmware.vscode-spring-boot",
         "dbaeumer.vscode-eslint",
-        "vscjava.vscode-java-pack"
+        "esbenp.prettier-vscode",
+        "ms-azuretools.vscode-docker",
+        "ms-vscode.vscode-typescript-next"
       ]
     }
   },
 
-  "postCreateCommand": "bash .devcontainer/post-create.sh",
+  "postCreateCommand": "npm install --prefix /workspace/netix-react || true",
 
   "remoteUser": "vscode"
 }

@@ -1,16 +1,18 @@
+# NETIX DEVCONTAINER BASE
 FROM mcr.microsoft.com/devcontainers/base:ubuntu
 
-# Update
+# Update system
 RUN apt-get update && apt-get upgrade -y
 
-# Node.js 22
+# Install Node.js 22
 RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
     && apt-get install -y nodejs
 
-# Java 21 + Maven
+# Install Java 21 + Maven
 RUN apt-get install -y openjdk-21-jdk maven
 
-# Tools
+# Install tools
 RUN apt-get install -y git curl wget unzip
 
+# Set the workspace
 WORKDIR /workspace
