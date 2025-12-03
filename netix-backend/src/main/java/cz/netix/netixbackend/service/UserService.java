@@ -1,6 +1,7 @@
 package cz.netix.netixbackend.service;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.springframework.stereotype.Service;
 
@@ -21,14 +22,17 @@ public class UserService {
     }
 
     public User findById(Long id) {
+        Objects.requireNonNull(id, "id must not be null");
         return repository.findById(id).orElse(null);
     }
 
     public User save(User user) {
+        Objects.requireNonNull(user, "user must not be null");
         return repository.save(user);
     }
 
     public void delete(Long id) {
+        Objects.requireNonNull(id, "id must not be null");
         repository.deleteById(id);
     }
 }

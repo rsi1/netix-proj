@@ -1,7 +1,6 @@
-cz/netix/netixbackend/model/User.class
 cz/netix/netixbackend/repository/UserRepository.class
+cz/netix/netixbackend/model/User.class
 cz/netix/netixbackend/controller/UserController.class
 cz/netix/netixbackend/api/HelloController.class
 cz/netix/netixbackend/NetixBackendApplication.class
-cz/netix/netixbackend/model/Product.class
 cz/netix/netixbackend/service/UserService.class

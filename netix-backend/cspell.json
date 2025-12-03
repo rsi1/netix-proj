@@ -1,0 +1,13 @@
+{
+  "version": "0.2",
+  "language": "en,cs",
+  "words": [
+    "databind",
+    "fasterxml",
+    "projectlombok"
+  ],
+  "ignorePaths": [
+    "target/**",
+    "node_modules/**"
+  ]
+}
