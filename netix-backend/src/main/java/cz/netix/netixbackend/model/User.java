@@ -2,6 +2,9 @@ package cz.netix.netixbackend.model;
 
 import java.time.LocalDateTime;
 
+import org.hibernate.annotations.CreationTimestamp;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,20 +20,24 @@ public class User {
     private String email;
     private Integer age;
     private String role;
-    private LocalDateTime createdAt;
+    //private LocalDateTime createdAt;
 
+    @CreationTimestamp
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime createdAt;
+   
     // Empty constructor (required by JPA)
     public User() {
         this.createdAt = LocalDateTime.now();
     }
    // Full constructor
-    public User(Long id, String name, String email) {
+    public User(Long id, String name, String email, Integer age, String role) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.age = age;
         this.role = role;
-        this.createdAt = LocalDateTime.now();
+       // this.createdAt = LocalDateTime.now();
     }
 
     // Getters & setters
