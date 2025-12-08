@@ -2,7 +2,8 @@ import { useState } from "react";
 import SearchForm from "../features/edesky/SearchForm";
 import SearchResults from "../features/edesky/SearchResults";
 import { searchEDesky } from "../features/edesky/api";
-import { Dashboard } from "../features/edesky/types";
+import type { Dashboard } from "../features/edesky/types";
+import styles from "./EDeskyPage.module.css";
 
 export default function EDeskyPage() {
   const [results, setResults] = useState<Dashboard[]>([]);
@@ -16,7 +17,7 @@ export default function EDeskyPage() {
   };
 
   return (
-    <div style={{ padding: 20 }}>
+    <div className={styles.container}>
       <h1>Vyhledávání eDesek</h1>
 
       <SearchForm onSearch={handleSearch} />

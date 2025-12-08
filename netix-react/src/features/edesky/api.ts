@@ -1,4 +1,4 @@
-import { EDeskyResponse, Dashboard, Meta } from "./types";
+import type { EDeskyResponse, Dashboard, Meta } from "./types";
 
 export async function searchEDesky(query: string): Promise<EDeskyResponse> {
   const url = `https://api.edesky.cz/search?dotazy=${encodeURIComponent(query)}`;
