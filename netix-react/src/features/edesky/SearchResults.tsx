@@ -1,4 +1,4 @@
-import { Dashboard } from "./types";
+import type { Dashboard } from "./types";
 
 export default function SearchResults({ items }: { items: Dashboard[] }) {
   if (items.length === 0) return <p>Žádné výsledky.</p>;
