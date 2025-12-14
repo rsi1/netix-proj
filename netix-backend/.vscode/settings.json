@@ -12,5 +12,7 @@
         "netix",
         "netixbackend",
         "springframework"
-    ]
+    ],
+    "azureFunctions.enableJavaRemoteDebugging": false,
+    "java.help.collectErrorLog": true
 }

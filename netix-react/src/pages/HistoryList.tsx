@@ -4,44 +4,64 @@ export default function EDeskyPage() {
   const [query, setQuery] = useState("");
   const [result, setResult] = useState<any>(null);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   async function handleSearch() {
     if (!query) return;
 
     setLoading(true);
+    setError(null);
+    setResult(null);
 
     try {
-      const res = await fetch(`/api/edesky/search?text=${encodeURIComponent(query)}`);
+      const res = await fetch(
+        `/api/edesky/search?text=${encodeURIComponent(query)}`
+      );
+
+      if (!res.ok) {
+        throw new Error(`Chyba API: ${res.status}`);
+      }
+
       const data = await res.json();
       setResult(data);
-    } catch (err) {
-      console.error(err);
-      setResult({ error: "Chyba při načítání" });
+    } catch (err: any) {
+      setError(err.message ?? "Neznámá chyba");
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);
   }
 
   return (
-    <div style={{ padding: 20 }}>
+    <div style={{ padding: 24 }}>
       <h1>Vyhledávání eDesek</h1>
 
-      <input
-        type="text"
-        value={query}
-        placeholder="Zadejte hledaný text..."
-        onChange={(e) => setQuery(e.target.value)}
-        style={{ padding: 8, width: 300, marginRight: 10 }}
-      />
+      <div style={{ marginBottom: 16 }}>
+        <input
+          type="text"
+          value={query}
+          placeholder="Zadej hledaný text (např. Brno)"
+          onChange={(e) => setQuery(e.target.value)}
+          style={{ padding: 8, width: 300, marginRight: 8 }}
+        />
+        <button onClick={handleSearch} disabled={loading}>
+          {loading ? "Hledám..." : "Hledat"}
+        </button>
+      </div>
 
-      <button onClick={handleSearch} style={{ padding: "8px 20px" }}>
-        Hledat
-      </button>
-
-      {loading && <p>Načítám…</p>}
+      {error && <p style={{ color: "red" }}>{error}</p>}
 
       {result && (
-        <pre style={{ marginTop: 20 }}>{JSON.stringify(result, null, 2)}</pre>
+        <pre
+          style={{
+            background: "#f5f5f5",
+            padding: 16,
+            borderRadius: 6,
+            maxHeight: 400,
+            overflow: "auto",
+          }}
+        >
+          {JSON.stringify(result, null, 2)}
+        </pre>
       )}
     </div>
   );
