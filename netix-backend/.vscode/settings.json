@@ -1,6 +1,6 @@
 {
     "commentTranslate.source": "Copilot",
-    "java.configuration.updateBuildConfiguration": "interactive",
+    "java.configuration.updateBuildConfiguration": "automatic",
     "java.debug.settings.onBuildFailureProceed": true,
     "java.compile.nullAnalysis.mode": "automatic",
     "commentTranslate.targetLanguage": "en",

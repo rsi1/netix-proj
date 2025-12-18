@@ -1,6 +1,10 @@
 package cz.netix.netixbackend.controller;
 
+import java.io.IOException;
+import java.sql.SQLException;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,8 +20,6 @@ public class DbTestController {
         try {
             jdbcTemplate.queryForObject("SELECT 1", Integer.class);
             return "DB OK – připojeno k databázi na NASu";
-        } catch (Exception e) {
-            return "DB ERROR: " + e.getMessage();
-        }
-    }
+
+
 }
