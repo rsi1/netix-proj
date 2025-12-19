@@ -1,18 +1,3 @@
 {
-    "commentTranslate.source": "Copilot",
-    "java.configuration.updateBuildConfiguration": "automatic",
-    "java.debug.settings.onBuildFailureProceed": true,
-    "java.compile.nullAnalysis.mode": "automatic",
-    "commentTranslate.targetLanguage": "en",
-    "cSpell.enabled": true,
-    "cSpell.language": "en,cs",
-    "cSpell.userWords": [],
-    "cSpell.words": [
-        "jdbc",
-        "netix",
-        "netixbackend",
-        "springframework"
-    ],
-    "azureFunctions.enableJavaRemoteDebugging": false,
-    "java.help.collectErrorLog": true
+    "java.compile.nullAnalysis.mode": "automatic"
 }

@@ -1,6 +1,5 @@
 package cz.netix.netixbackend.api;
 
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,15 +32,7 @@ public class HelloController {
         }
     }
 
-        // ...existing code...
-    <dependency>
-      <groupId>org.mariadb.jdbc</groupId>
-      <artifactId>mariadb-java-client</artifactId>
-      <!-- Pokud nepoužíváte Spring Boot parent/BOM, přidejte verzi:
-      <version>3.3.3</version>
-      -->
-    </dependency>
-    // ...existing code...
+
     public BackendResponse hello() {
         return new BackendResponse(
             "Hello from Spring Boot!",
