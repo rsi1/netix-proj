@@ -1,88 +1,39 @@
 {
-    // Pro informace o možných atributech použijte technologii IntelliSense.
-    // Umístěním ukazatele myši zobrazíte popisy existujících atributů.
-    // Další informace najdete tady: https://go.microsoft.com/fwlink/?linkid=830387
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "type": "java",
-            "name": "NetixBackendApplication",
-            "request": "launch",
-            "mainClass": "cz.netix.netixbackend.NetixBackendApplication",
-            "projectName": "demo"
-        },
-        {
-            "type": "java",
-            "name": "Current File",
-            "request": "launch",
-            "mainClass": "${file}"
-        },
-        {
-            "type": "java",
-            "name": "NetixBackendApplication",
-            "request": "launch",
-            "mainClass": "com.netix.netixbackend.NetixBackendApplication",
-            "projectName": "demo"
-        },
-        {
-            "type": "pwa-msedge",
-            "name": "Launch Microsoft Edge",
-            "request": "launch",
-            "runtimeArgs": [
-                "--remote-debugging-port=9222"
-            ],
-            "url": "/home/rsime/.vscode/extensions/ms-edgedevtools.vscode-edge-devtools-2.1.10/out/startpage/index.html",
-            "presentation": {
-                "hidden": true
-            }
-        },
-        {
-            "type": "pwa-msedge",
-            "name": "Launch Microsoft Edge in headless mode",
-            "request": "launch",
-            "runtimeArgs": [
-                "--headless",
-                "--remote-debugging-port=9222"
-            ],
-            "url": "/home/rsime/.vscode/extensions/ms-edgedevtools.vscode-edge-devtools-2.1.10/out/startpage/index.html",
-            "presentation": {
-                "hidden": true
-            }
-        },
-        {
-            "type": "vscode-edge-devtools.debug",
-            "name": "Open Edge DevTools",
-            "request": "attach",
-            "url": "/home/rsime/.vscode/extensions/ms-edgedevtools.vscode-edge-devtools-2.1.10/out/startpage/index.html",
-            "presentation": {
-                "hidden": true
-            }
-        },
-        {
-            "type": "java",
-            "name": "Spring Boot-NetixBackendApplication<netix-backend>",
-            "request": "launch",
-            "cwd": "${workspaceFolder}",
-            "mainClass": "cz.netix.netixbackend.NetixBackendApplication",
-            "projectName": "netix-backend",
-            "args": "",
-            "envFile": "${workspaceFolder}/.env"
-        }
-    ],
-    "compounds": [
-        {
-            "name": "Launch Edge Headless and attach DevTools",
-            "configurations": [
-                "Launch Microsoft Edge in headless mode",
-                "Open Edge DevTools"
-            ]
-        },
-        {
-            "name": "Launch Edge and attach DevTools",
-            "configurations": [
-                "Launch Microsoft Edge",
-                "Open Edge DevTools"
-            ]
-        }
-    ]
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot - NetixBackendApplication",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "cz.netix.netixbackend.NetixBackendApplication",
+      "projectName": "netix-backend",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "type": "pwa-msedge",
+      "request": "launch",
+      "name": "React Vite App",
+      "url": "http://localhost:5173",
+      "webRoot": "${workspaceFolder}/netix-react/src",
+      "preLaunchTask": "Run Vite"
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Netix Fullstack App",
+      "configurations": [
+        "Spring Boot - NetixBackendApplication",
+        "React Vite App"
+      ]
+    },
+    {
+  "name": "React App + Edge DevTools",
+  "configurations": [
+    "React Vite App (Edge)",
+    "Open Edge DevTools"
+  ]
+}
+  ]
 }
