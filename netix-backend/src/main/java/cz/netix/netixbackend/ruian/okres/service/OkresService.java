@@ -15,24 +15,8 @@ public class OkresService {
         this.repository = repository;
     }
 
-    public List<Okres> getVsechny() {
+    public List<Okres> findAll() {
         return repository.findAll();
     }
 
-    public List<Okres> getAktivni() {
-        return repository.findByAktivniTrue();
-    }
-
-    public Okres getPodleKodu(Integer kod) {
-        return repository.findById(kod)
-            .orElseThrow(() -> new RuntimeException("Okres nenalezen: " + kod));
-    }
-
-    public List<Okres> getPodleKraje(Integer krajKod) {
-        return repository.findByKrajKod(krajKod);
-    }
-
-    public List<Okres> hledat(String text) {
-        return repository.findByNazevContainingIgnoreCase(text);
-    }
 }

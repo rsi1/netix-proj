@@ -3,7 +3,6 @@ package cz.netix.netixbackend.ruian.okres.controller;
 import cz.netix.netixbackend.ruian.okres.entity.Okres;
 import cz.netix.netixbackend.ruian.okres.service.OkresService;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -17,10 +16,10 @@ public class OkresController {
     }
 
     @GetMapping
-    public List<Okres> vsechny() {
-        return service.getVsechny();
+    public List<Okres> findAll() {
+        return service.findAll();
     }
-
+/* 
     @GetMapping("/aktivni")
     public List<Okres> aktivni() {
         return service.getAktivni();
@@ -40,4 +39,5 @@ public class OkresController {
     public List<Okres> hledat(@RequestParam String q) {
         return service.hledat(q);
     }
+*/        
 }

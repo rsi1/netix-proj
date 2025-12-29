@@ -3,11 +3,13 @@ package cz.netix.netixbackend.edesky.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import cz.netix.netixbackend.edesky.dto.EDeskyResponseDto;
 
 @Service
+@Profile("edesky")
 public class EDeskyService {
 
     private static final Logger logger = LoggerFactory.getLogger(EDeskyService.class);
