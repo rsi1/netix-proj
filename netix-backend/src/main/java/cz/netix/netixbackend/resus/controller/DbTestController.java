@@ -1,4 +1,4 @@
-package cz.netix.netixbackend.controller;
+package cz.netix.netixbackend.resus.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;

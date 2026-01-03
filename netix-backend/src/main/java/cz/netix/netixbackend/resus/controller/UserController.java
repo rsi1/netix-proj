@@ -1,4 +1,4 @@
-package cz.netix.netixbackend.controller;
+package cz.netix.netixbackend.resus.controller;
 
 import java.util.List;
 
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import cz.netix.netixbackend.model.User;
-import cz.netix.netixbackend.service.UserService;
+import cz.netix.netixbackend.resus.model.User;
+import cz.netix.netixbackend.resus.service.UserService;
 
 @RestController
 @RequestMapping("/api/users")
