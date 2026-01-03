@@ -2,6 +2,8 @@ package cz.netix.netixbackend.ruian.sync.service;
 
 import cz.netix.netixbackend.ruian.obec.entity.Obec;
 import cz.netix.netixbackend.ruian.obec.repository.ObecRepository;
+import cz.netix.netixbackend.ruian.sync.exception.RuianImportException;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -44,7 +46,7 @@ public class RuianImportService {
               });
 
         } catch (Exception e) {
-            throw new RuntimeException("Chyba při importu obcí z RÚIAN", e);
+            throw new RuianImportException("Import RÚIAN selhal", e);
         }
     }
 }
