@@ -1,12 +1,11 @@
 package cz.netix.netixbackend.ruian.obec.service;
 
-import cz.netix.netixbackend.ruian.obec.entity.Obec;
-import cz.netix.netixbackend.ruian.obec.repository.ObecRepository;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
+import cz.netix.netixbackend.ruian.obec.entity.Obec;
+import cz.netix.netixbackend.ruian.obec.repository.ObecRepository;
 
 @Service
 public class ObecService {
@@ -18,7 +17,10 @@ public class ObecService {
     }
 
     // metody
-
+    public List<Obec> hledat(String text) {
+        System.out.println(">>> hledat() called, text=" + text);
+        return obecRepository.findByNazevContainingIgnoreCase(text);
+}
     public List<Obec> findAll() {
         return obecRepository.findAll();
     }

@@ -9,7 +9,10 @@
       "mainClass": "cz.netix.netixbackend.NetixBackendApplication",
       "projectName": "netix-backend",
       "args": "",
-      "envFile": "${workspaceFolder}/.env"
+      "envFile": "${workspaceFolder}/netix-backend/.env",
+      "env": {
+        "SPRING_PROFILES_ACTIVE": "dev"
+      }
     },
     {
       "type": "pwa-msedge",
