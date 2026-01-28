@@ -24,4 +24,8 @@ public class ObecService {
     public List<Obec> findAll() {
         return obecRepository.findAll();
     }
+
+    public Obec ulozObec(Obec obec) {
+        return obecRepository.save(obec);
+    }
 }

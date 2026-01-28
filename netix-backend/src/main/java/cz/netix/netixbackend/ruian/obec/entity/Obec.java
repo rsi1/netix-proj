@@ -22,7 +22,7 @@ public class Obec {
     @Column(name = "nazev", nullable = false)
     private String nazev;
 
-    @Column(name = "okres_kod", nullable = false)
+    @Column(name = "okres_kod", nullable = true)
     private Integer okresKod;
 
     @Column(name = "aktivni", nullable = false)
