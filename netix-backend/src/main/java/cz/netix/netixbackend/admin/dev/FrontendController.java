@@ -1,4 +1,4 @@
-package cz.netix.netixbackend.resus.controller;
+package cz.netix.netixbackend.admin.dev;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

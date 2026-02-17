@@ -6,21 +6,31 @@ export default function Layout() {
     <div className="app">
       <aside className="sidebar">
         <div className="brand">NETIX</div>
+
         <nav className="nav">
           <NavLink to="/" end className={({ isActive }) => (isActive ? "active" : "")}>
             Dashboard
           </NavLink>
+
           <NavLink to="/edesky" className={({ isActive }) => (isActive ? "active" : "")}>
             e-Desky
           </NavLink>
+
           <NavLink to="/backend" className={({ isActive }) => (isActive ? "active" : "")}>
             Backend test
           </NavLink>
+
           <NavLink to="/dbtest" className={({ isActive }) => (isActive ? "active" : "")}>
             DB test
           </NavLink>
-          <NavLink to="/about" className={({ isActive }) => (isActive ? "active" : "")}>
-            O projektu
+
+          {/* MAPY */}
+          <NavLink to="/map-cz" className={({ isActive }) => (isActive ? "active" : "")}>
+            Mapa ČR
+          </NavLink>
+
+          <NavLink to="/map-world" className={({ isActive }) => (isActive ? "active" : "")}>
+            Mapa světa
           </NavLink>
         </nav>
       </aside>

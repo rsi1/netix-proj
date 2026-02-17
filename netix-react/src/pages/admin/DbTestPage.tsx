@@ -4,7 +4,7 @@ export default function DbTestPage() {
   const [result, setResult] = useState("");
 
   const testDb = async () => {
-    const res = await fetch("/api/db/test");
+    const res = await fetch("/api/admin/dev/dbtest");
     const text = await res.text();
     setResult(text);
   };

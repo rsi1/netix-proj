@@ -1,12 +1,12 @@
-package cz.netix.netixbackend.resus.service;
+package cz.netix.netixbackend.service;
 
 import java.util.List;
 import java.util.Objects;
 
 import org.springframework.stereotype.Service;
 
-import cz.netix.netixbackend.resus.model.User;
-import cz.netix.netixbackend.resus.repository.UserRepository;
+import cz.netix.netixbackend.model.User;
+import cz.netix.netixbackend.repository.UserRepository;
 
 @Service
 public class UserService {

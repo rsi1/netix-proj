@@ -3,18 +3,19 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
 export default defineConfig({
+  base: "/app/",   // 🔴 důležité pro NAS
+
   plugins: [react()],
+
   server: {
     port: 5173,
     proxy: {
       "/api": {
-        target: "http://localhost:8080", // backend
+        target: "http://localhost:8080",
         changeOrigin: true,
         secure: false,
       },
     },
   },
 });
-
-
 

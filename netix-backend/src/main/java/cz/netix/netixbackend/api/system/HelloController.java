@@ -1,5 +1,6 @@
-package cz.netix.netixbackend.api;
+package cz.netix.netixbackend.api.system;
 
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -32,7 +33,7 @@ public class HelloController {
         }
     }
 
-
+    @GetMapping("/hello")
     public BackendResponse hello() {
         return new BackendResponse(
             "Hello from Spring Boot!",

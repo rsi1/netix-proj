@@ -1,4 +1,4 @@
-package cz.netix.netixbackend.resus.model;
+package cz.netix.netixbackend.model;
 
 import java.time.LocalDateTime;
 
