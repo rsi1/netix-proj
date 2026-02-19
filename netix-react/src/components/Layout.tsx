@@ -16,14 +16,6 @@ export default function Layout() {
             e-Desky
           </NavLink>
 
-          <NavLink to="/backend" className={({ isActive }) => (isActive ? "active" : "")}>
-            Backend test
-          </NavLink>
-
-          <NavLink to="/dbtest" className={({ isActive }) => (isActive ? "active" : "")}>
-            DB test
-          </NavLink>
-
           {/* MAPY */}
           <NavLink to="/map-cz" className={({ isActive }) => (isActive ? "active" : "")}>
             Mapa ČR
@@ -32,12 +24,17 @@ export default function Layout() {
           <NavLink to="/map-world" className={({ isActive }) => (isActive ? "active" : "")}>
             Mapa světa
           </NavLink>
+
+          {/* ADMIN */}
+          <NavLink to="/admin" className={({ isActive }) => (isActive ? "active" : "")}>
+            Admin
+          </NavLink>
         </nav>
       </aside>
 
       <div className="main">
         <header className="topbar">
-          <div className="muted">NETIX Admin</div>
+          <div className="muted">NETIX</div>
           <ThemeToggle />
         </header>
 

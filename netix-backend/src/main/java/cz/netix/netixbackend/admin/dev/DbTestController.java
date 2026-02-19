@@ -8,7 +8,7 @@ import java.util.Map;
 
 @Profile("dev")
 @RestController
-@RequestMapping("/admin/dev")
+@RequestMapping("/api/admin/dev")
 public class DbTestController {
 
     private final DataSource dataSource;

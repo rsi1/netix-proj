@@ -11,27 +11,27 @@ export default function AdminLayout() {
         </div>
 
         <nav className="nav">
-          <NavLink to="/app/admin" end className={({ isActive }) => (isActive ? "active" : "")}>
+          <NavLink to="/admin" end className={({ isActive }) => (isActive ? "active" : "")}>
             Admin dashboard
           </NavLink>
 
           <div style={{ marginTop: 12, fontSize: 12, opacity: 0.7 }}>Dev tools</div>
 
-          <NavLink to="/app/admin/dev" className={({ isActive }) => (isActive ? "active" : "")}>
+          <NavLink to="/admin/dev" className={({ isActive }) => (isActive ? "active" : "")}>
             Dev přehled
           </NavLink>
 
-          <NavLink to="/app/admin/dbtest" className={({ isActive }) => (isActive ? "active" : "")}>
+          <NavLink to="/admin/dbtest" className={({ isActive }) => (isActive ? "active" : "")}>
             DB test
           </NavLink>
 
-          <NavLink to="/app/admin/backend" className={({ isActive }) => (isActive ? "active" : "")}>
+          <NavLink to="/admin/backend" className={({ isActive }) => (isActive ? "active" : "")}>
             Backend test
           </NavLink>
 
           <div style={{ marginTop: 12, fontSize: 12, opacity: 0.7 }}>Zpět</div>
 
-          <NavLink to="/app" className={({ isActive }) => (isActive ? "active" : "")}>
+          <NavLink to="/" className={({ isActive }) => (isActive ? "active" : "")}>
             Veřejná část
           </NavLink>
         </nav>

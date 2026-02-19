@@ -6,9 +6,9 @@ export default function AdminHome() {
       <h1>NETIX Admin</h1>
       <p>Rychlé odkazy:</p>
       <ul>
-        <li><Link to="/app/admin/dev">Dev přehled</Link></li>
-        <li><Link to="/app/admin/dbtest">DB test</Link></li>
-        <li><Link to="/app/admin/backend">Backend test</Link></li>
+        <li><Link to="/admin/dev">Dev přehled</Link></li>
+        <li><Link to="/admin/dbtest">DB test</Link></li>
+        <li><Link to="/admin/backend">Backend test</Link></li>
       </ul>
     </div>
   );

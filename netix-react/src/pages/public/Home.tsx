@@ -18,9 +18,7 @@ export default function Home() {
 
       <div className="grid" style={{ marginTop: 16 }}>
         <CardLink title="e-Desky" desc="Vyhledávání a test integrace." to="/edesky" />
-        <CardLink title="Backend test" desc="API /users přes Vite proxy." to="/backend" />
-        <CardLink title="DB test" desc="Ověření připojení a dotazů." to="/dbtest" />
-
+        
         <div className="card col-12">
           <h3 style={{ margin: "0 0 8px 0" }}>Stav</h3>
           <div className="muted">
