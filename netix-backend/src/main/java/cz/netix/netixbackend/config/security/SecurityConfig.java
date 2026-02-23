@@ -15,23 +15,34 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            // start: jednoduše vypneme CSRF (až budeš chtít, vrátíme zpět s tokenem)
             .csrf(csrf -> csrf.disable())
             .cors(Customizer.withDefaults())
 
+            // ✅ aby API nikdy nevracelo HTML login page
+            .exceptionHandling(e -> e
+                .authenticationEntryPoint((req, res, ex) -> res.sendError(401))
+                .accessDeniedHandler((req, res, ex) -> res.sendError(403))
+            )
+
             .authorizeHttpRequests(auth -> auth
+                // preflight
                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 
-                .requestMatchers("/api/auth/**").permitAll()
+                // veřejné
                 .requestMatchers("/actuator/health").permitAll()
+                .requestMatchers("/api/auth/**").permitAll()
 
+                // admin
                 .requestMatchers("/api/admin/**").hasRole("ADMIN")
-                .requestMatchers("/api/**").permitAll()
 
+                // všechno ostatní API vyžaduje login (session)
+                .requestMatchers("/api/**").authenticated()
+
+                // ostatní (pokud nějaké máš mimo /api)
                 .anyRequest().permitAll()
             )
 
-            // login přes API endpoint (form-data)
+            // ponecháme API login endpoint přes formLogin POST
             .formLogin(form -> form
                 .loginProcessingUrl("/api/auth/login")
                 .successHandler((req, res, a) -> res.setStatus(200))

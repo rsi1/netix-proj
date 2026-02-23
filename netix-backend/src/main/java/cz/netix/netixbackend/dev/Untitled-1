@@ -1,0 +1,5 @@
+curl -i -c /tmp/netix.cookies \
+  -X POST \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "username=admin&password=draCo-2025" \
+  http://localhost:8080/api/auth/login

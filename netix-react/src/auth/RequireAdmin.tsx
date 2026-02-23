@@ -1,43 +1,19 @@
-import { useEffect, useState } from "react";
-import type { ReactNode } from "react";
+import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
-import { getMe } from "./authApi";
+import { useAuth } from "./AuthContext";
 
-type Props = { children: ReactNode };
-
-export default function RequireAdmin({ children }: Props) {
+export default function RequireAdmin({ children }: { children: React.ReactNode }) {
+  const { state, hasRole } = useAuth();
   const location = useLocation();
-  const [status, setStatus] = useState<"loading" | "ok" | "no">("loading");
 
-  useEffect(() => {
-    let alive = true;
+  if (state.status === "loading") return <div>Loading...</div>;
 
-    // 1) lokální dev bypass (aby ses nezasekl hned teď)
-    if (import.meta.env.DEV) {
-      setStatus("ok");
-      return;
-    }
+  if (state.status === "anon") {
+    return <Navigate to="/login" replace state={{ from: location.pathname }} />;
+  }
 
-    // 2) budoucí: dotaz na backend kdo jsem
-    getMe()
-      .then((me) => {
-        if (!alive) return;
-        setStatus(me?.roles?.includes("ADMIN") ? "ok" : "no");
-      })
-      .catch(() => {
-        if (!alive) return;
-        setStatus("no");
-      });
-
-    return () => {
-      alive = false;
-    };
-  }, []);
-
-  if (status === "loading") return <div style={{ padding: 16 }}>Ověřuji oprávnění…</div>;
-
-  if (status === "no") {
-    return <Navigate to="/app" replace state={{ from: location.pathname }} />;
+  if (!hasRole("ADMIN")) {
+    return <Navigate to="/forbidden" replace state={{ from: location.pathname }} />;
   }
 
   return <>{children}</>;

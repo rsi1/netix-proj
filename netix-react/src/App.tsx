@@ -15,6 +15,7 @@ import AdminHome from "./pages/admin/AdminHome";
 import DevToolsPage from "./pages/admin/DevToolsPage";
 import RequireAdmin from "./auth/RequireAdmin";
 
+
 export default function App() {
   return (
     <BrowserRouter basename="/app">

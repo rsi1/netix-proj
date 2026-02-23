@@ -19,6 +19,14 @@ public class DbUserDetailsService implements UserDetailsService {
         var user = users.findByUsername(username)
             .orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
 
+        System.out.println("LOGIN ATTEMPT: " + username);
+
+        var user = users.findByUsername(username)
+            .orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
+
+        System.out.println("DB USER FOUND: " + user.getUsername());
+
+
         var authorities = user.getRoles().stream()
             .map(r -> new SimpleGrantedAuthority(r.getName()))
             .toList();
