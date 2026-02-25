@@ -8,13 +8,14 @@ export default function RequireAdmin({ children }: { children: React.ReactNode }
 
   if (state.status === "loading") return <div>Loading...</div>;
 
-  if (state.status === "anon") {
-    return <Navigate to="/login" replace state={{ from: location.pathname }} />;
-  }
+if (state.status === "anon") {
+  return <Navigate to="/admin/login" replace state={{ from: location.pathname }} />;
+}
 
-  if (!hasRole("ADMIN")) {
-    return <Navigate to="/forbidden" replace state={{ from: location.pathname }} />;
-  }
+if (!hasRole("ADMIN")) {
+  return <Navigate to="/admin/forbidden" replace state={{ from: location.pathname }} />;
+}
 
   return <>{children}</>;
 }
+ 

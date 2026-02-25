@@ -1,5 +1,7 @@
 import { NavLink, Outlet } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
+import AuthStatus from "./AuthStatus";
+
 
 export default function AdminLayout() {
   return (
@@ -9,7 +11,8 @@ export default function AdminLayout() {
           <div style={{ fontWeight: 800 }}>NETIX</div>
           <div style={{ fontSize: 12, opacity: 0.7 }}>Admin</div>
         </div>
-
+  {/* 🔐 AUTH STATUS */}
+  <AuthStatus />
         <nav className="nav">
           <NavLink to="/admin" end className={({ isActive }) => (isActive ? "active" : "")}>
             Admin dashboard
@@ -28,6 +31,11 @@ export default function AdminLayout() {
           <NavLink to="/admin/backend" className={({ isActive }) => (isActive ? "active" : "")}>
             Backend test
           </NavLink>
+
+          <NavLink to="/app/admin/users">
+            Uživatelé
+          </NavLink>
+
 
           <div style={{ marginTop: 12, fontSize: 12, opacity: 0.7 }}>Zpět</div>
 

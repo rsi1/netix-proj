@@ -1,5 +1,5 @@
 package cz.netix.netixbackend.config.security;
-
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -9,6 +9,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+
+
 @Configuration
 public class SecurityConfig {
 
@@ -17,6 +19,8 @@ public class SecurityConfig {
         http
             .csrf(csrf -> csrf.disable())
             .cors(Customizer.withDefaults())
+            .sessionManagement(sm -> sm
+            .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED))
 
             // ✅ aby API nikdy nevracelo HTML login page
             .exceptionHandling(e -> e

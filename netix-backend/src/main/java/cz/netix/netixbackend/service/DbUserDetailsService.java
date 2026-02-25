@@ -1,12 +1,16 @@
 package cz.netix.netixbackend.service;
 
 import cz.netix.netixbackend.repository.security.AppUserRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.*;
 import org.springframework.stereotype.Service;
 
 @Service
 public class DbUserDetailsService implements UserDetailsService {
+
+    private static final Logger log = LoggerFactory.getLogger(DbUserDetailsService.class);
 
     private final AppUserRepository users;
 
@@ -16,16 +20,13 @@ public class DbUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        var user = users.findByUsername(username)
-            .orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
 
-        System.out.println("LOGIN ATTEMPT: " + username);
+        log.info("LOGIN ATTEMPT: {}", username);
 
         var user = users.findByUsername(username)
             .orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
 
-        System.out.println("DB USER FOUND: " + user.getUsername());
-
+        log.info("DB USER FOUND: {}", user.getUsername());
 
         var authorities = user.getRoles().stream()
             .map(r -> new SimpleGrantedAuthority(r.getName()))

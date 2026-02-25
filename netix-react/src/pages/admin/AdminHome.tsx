@@ -9,7 +9,9 @@ export default function AdminHome() {
         <li><Link to="/admin/dev">Dev přehled</Link></li>
         <li><Link to="/admin/dbtest">DB test</Link></li>
         <li><Link to="/admin/backend">Backend test</Link></li>
-      </ul>
+        <li><Link to="/admin/users">Uživatelé</Link></li>
+        </ul>
+
     </div>
   );
 }
