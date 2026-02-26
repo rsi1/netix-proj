@@ -30,9 +30,14 @@ public class NetixBackendApplication {
         if (dotenv.get("JDBC_URL") != null) {
             System.setProperty("JDBC_URL", dotenv.get("JDBC_URL"));
         }
-        //
-       // System.setProperty("EDESKY_API_KEY", dotenv.get("EDESKY_API_KEY"));
-      //  System.setProperty("SPRING_PORT", dotenv.get("SPRING_PORT"));
+        
+        if (dotenv.get("EDESKY_API_KEY") != null) {
+            System.setProperty("EDESKY_API_KEY", dotenv.get("EDESKY_API_KEY"));
+        }
+
+        if (dotenv.get("SPRING_PORT") != null) {
+            System.setProperty("SPRING_PORT", dotenv.get("SPRING_PORT"));
+        }
 
         // 🔥 3. Start Spring Boot
         SpringApplication.run(NetixBackendApplication.class, args);
