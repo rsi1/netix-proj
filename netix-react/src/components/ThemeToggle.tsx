@@ -7,19 +7,18 @@ function applyTheme(theme: Theme) {
 }
 
 export default function ThemeToggle() {
-  const [theme, setTheme] = useState<Theme>("light");
+  const [theme, setTheme] = useState<Theme>(() => {
+    const saved = localStorage.getItem("netix-theme");
+    return saved === "dark" || saved === "light" ? saved : "light";
+  });
 
   useEffect(() => {
-    const saved = (localStorage.getItem("netix-theme") as Theme | null) ?? "light";
-    setTheme(saved);
-    applyTheme(saved);
-  }, []);
+    applyTheme(theme);
+    localStorage.setItem("netix-theme", theme);
+  }, [theme]);
 
   const toggle = () => {
-    const next: Theme = theme === "dark" ? "light" : "dark";
-    setTheme(next);
-    localStorage.setItem("netix-theme", next);
-    applyTheme(next);
+    setTheme((prev) => (prev === "dark" ? "light" : "dark"));
   };
 
   return (

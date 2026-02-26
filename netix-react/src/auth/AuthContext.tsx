@@ -1,6 +1,12 @@
-import React, { createContext, useContext, useEffect, useMemo, useState } from "react";
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import * as api from "../api/auth";
-
 
 type AuthState =
   | { status: "loading" }
@@ -20,35 +26,43 @@ const Ctx = createContext<AuthCtx | null>(null);
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [state, setState] = useState<AuthState>({ status: "loading" });
 
-  const refresh = async () => {
+  const refresh = useCallback(async () => {
     setState({ status: "loading" });
     const r = await api.me();
     if (!r.authenticated) setState({ status: "anon" });
     else setState({ status: "authed", username: r.username, roles: r.roles });
-  };
-
-  const login = async (username: string, password: string) => {
-    await api.login(username, password);
-    await refresh();
-  };
-
-  const logout = async () => {
-    await api.logout();
-    await refresh();
-  };
-
-  const hasRole = (role: string) => {
-    if (state.status !== "authed") return false;
-    const expected = role.startsWith("ROLE_") ? role : `ROLE_${role}`;
-    return state.roles.includes(expected);
-  };
-
-  useEffect(() => {
-    refresh();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const value = useMemo<AuthCtx>(() => ({ state, refresh, login, logout, hasRole }), [state]);
+  const login = useCallback(
+    async (username: string, password: string) => {
+      await api.login(username, password);
+      await refresh();
+    },
+    [refresh]
+  );
+
+  const logout = useCallback(async () => {
+    await api.logout();
+    await refresh();
+  }, [refresh]);
+
+  const hasRole = useCallback(
+    (role: string) => {
+      if (state.status !== "authed") return false;
+      const expected = role.startsWith("ROLE_") ? role : `ROLE_${role}`;
+      return state.roles.includes(expected);
+    },
+    [state]
+  );
+
+  useEffect(() => {
+    void refresh();
+  }, [refresh]);
+
+  const value = useMemo<AuthCtx>(
+    () => ({ state, refresh, login, logout, hasRole }),
+    [state, refresh, login, logout, hasRole]
+  );
 
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 }
