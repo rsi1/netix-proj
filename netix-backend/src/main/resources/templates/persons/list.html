@@ -1,0 +1,46 @@
+<section th:fragment="content" xmlns:th="http://www.thymeleaf.org">
+
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="h5 mb-0">Persons</h2>
+
+    <a class="btn btn-primary btn-sm" th:href="@{/admin/persons/new}">
+      + New Person
+    </a>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-sm table-striped align-middle">
+      <thead>
+      <tr>
+        <th style="width: 80px;">ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th style="width: 160px;">Actions</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr th:if="${#lists.isEmpty(persons)}">
+        <td colspan="4" class="text-muted">Žádné osoby zatím nejsou.</td>
+      </tr>
+
+      <tr th:each="p : ${persons}">
+        <td th:text="${p.id}">1</td>
+        <td th:text="${p.name}">Name</td>
+        <td th:text="${p.email}">email</td>
+        <td class="d-flex gap-2">
+          <a class="btn btn-outline-secondary btn-sm"
+             th:href="@{/admin/persons/{id}/edit(id=${p.id})}">Edit</a>
+
+          <form th:action="@{/admin/persons/{id}/delete(id=${p.id})}"
+                method="post"
+                onsubmit="return confirm('Opravdu smazat?');">
+            <button class="btn btn-outline-danger btn-sm" type="submit">Delete</button>
+          </form>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+</section>
