@@ -4,9 +4,23 @@ export default function DbTestPage() {
   const [result, setResult] = useState("");
 
   const testDb = async () => {
-    const res = await fetch("/api/admin/dev/dbtest");
-    const text = await res.text();
-    setResult(text);
+    try {
+      const res = await fetch("api/admin/dev/dbtest", {
+        credentials: "include",
+      });
+
+      const text = await res.text();
+
+      if (!res.ok) {
+        setResult(`Chyba ${res.status}: ${text}`);
+        return;
+      }
+
+      setResult(text);
+    } catch (e) {
+      setResult("Chyba spojení s backendem.");
+      console.error(e);
+    }
   };
 
   return (

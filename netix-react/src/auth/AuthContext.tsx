@@ -28,9 +28,19 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const refresh = useCallback(async () => {
     setState({ status: "loading" });
+
     const r = await api.me();
-    if (!r.authenticated) setState({ status: "anon" });
-    else setState({ status: "authed", username: r.username, roles: r.roles });
+
+    if (!r.authenticated || !r.username) {
+      setState({ status: "anon" });
+      return;
+    }
+
+    setState({
+      status: "authed",
+      username: r.username,
+      roles: r.roles ?? [],
+    });
   }, []);
 
   const login = useCallback(
@@ -49,8 +59,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const hasRole = useCallback(
     (role: string) => {
       if (state.status !== "authed") return false;
-      const expected = role.startsWith("ROLE_") ? role : `ROLE_${role}`;
-      return state.roles.includes(expected);
+
+      return (
+        state.roles.includes(role) ||
+        state.roles.includes(`ROLE_${role}`) ||
+        state.roles.includes(role.replace(/^ROLE_/, ""))
+      );
     },
     [state]
   );

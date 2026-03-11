@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import RequireAdmin from "./auth/RequireAdmin";
 
 import Layout from "./components/Layout";
@@ -18,20 +18,10 @@ import EDeskyPage from "./pages/public/EDeskyPage";
 import MapPage from "./pages/public/MapPage";
 import MapsPage from "./pages/public/MapsPage";
 
-
-function ProtectedAdmin() {
-  return (
-    <RequireAdmin>
-      <Outlet />
-    </RequireAdmin>
-  );
-}
-
 export default function App() {
   return (
     <BrowserRouter basename="/app">
       <Routes>
-        {/* Public část */}
         <Route element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="edesky" element={<EDeskyPage />} />
@@ -39,20 +29,17 @@ export default function App() {
           <Route path="map-world" element={<MapsPage />} />
         </Route>
 
-        {/* Admin shell */}
         <Route path="admin" element={<AdminLayout />}>
-          {/* NEchráněné admin stránky */}
           <Route path="login" element={<LoginPage />} />
           <Route path="forbidden" element={<ForbiddenPage />} />
 
-          {/* Chráněné admin stránky */}
-      {/* <Route element={<ProtectedAdmin />} /> */}
+          <Route element={<RequireAdmin />}>
             <Route index element={<AdminHome />} />
             <Route path="dev" element={<DevToolsPage />} />
             <Route path="dbtest" element={<DbTestPage />} />
             <Route path="users" element={<AdminUsersPage />} />
             <Route path="backend" element={<BackendTest />} />
-        {/*  </Route> */}
+          </Route>
         </Route>
 
         <Route path="*" element={<NotFound />} />
@@ -60,10 +47,3 @@ export default function App() {
     </BrowserRouter>
   );
 }
-
-
-
-
-
-
-

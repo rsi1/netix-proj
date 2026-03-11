@@ -1,4 +1,4 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
 import AuthStatus from "./AuthStatus";
 
@@ -32,7 +32,7 @@ export default function AdminLayout() {
             Backend test
           </NavLink>
 
-          <NavLink to="/app/admin/users">
+          <NavLink to="/admin/users" className={({ isActive }) => (isActive ? "active" : "")}>
             Uživatelé
           </NavLink>
 

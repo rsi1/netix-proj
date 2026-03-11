@@ -1,25 +1,30 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useAuth } from "../../auth/AuthContext";
 
-// zatím dummy – později napojíš na backend a token/roles
 export default function LoginPage() {
   const nav = useNavigate();
   const loc = useLocation();
+  const { login } = useAuth();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState<string | null>(null);
 
-  const from = (loc.state as any)?.from || "/admin";
+  const from = loc.state?.from || "/admin";
 
-  function onSubmit(e: React.FormEvent) {
+  const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError(null);
 
-    // TODO: tady později zavoláš backend /api/auth/login a uložíš token/roles
-    // zatím jen "předstíráme" login:
-    localStorage.setItem("netix.auth", "1");
-
-    nav(from, { replace: true });
-  }
+    try {
+      await login(username, password);
+      nav(from, { replace: true });
+    } catch (err) {
+      console.error("LOGIN ERROR", err);
+      setError("Špatné jméno nebo heslo.");
+    }
+  };
 
   return (
     <div style={{ maxWidth: 420, margin: "40px auto", textAlign: "left" }}>
@@ -47,6 +52,12 @@ export default function LoginPage() {
             />
           </label>
         </div>
+
+        {error && (
+          <div style={{ color: "crimson", marginBottom: 12 }}>
+            {error}
+          </div>
+        )}
 
         <button type="submit" style={{ padding: "10px 14px" }}>
           Přihlásit

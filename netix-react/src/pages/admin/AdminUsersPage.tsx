@@ -3,14 +3,14 @@ import { useEffect, useState } from "react";
 interface User {
   id: number;
   username: string;
-  roles: any[];
+  roles: { name: string }[];
 }
 
 export default function AdminUsersPage() {
   const [users, setUsers] = useState<User[]>([]);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/admin/users`, {
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/users`, {
       credentials: "include",
     })
       .then(res => res.json())
