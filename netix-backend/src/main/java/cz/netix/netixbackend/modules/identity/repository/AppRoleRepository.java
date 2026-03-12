@@ -1,6 +1,6 @@
-package cz.netix.netixbackend.repository.security;
+package cz.netix.netixbackend.modules.identity.repository;
 
-import cz.netix.netixbackend.model.security.AppRole;
+import cz.netix.netixbackend.modules.identity.entity.AppRole;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

@@ -1,7 +1,7 @@
 package cz.netix.netixbackend.dev;
 
-import cz.netix.netixbackend.model.security.AppUser;
-import cz.netix.netixbackend.repository.security.AppUserRepository;
+import cz.netix.netixbackend.modules.identity.entity.AppUser;
+import cz.netix.netixbackend.modules.identity.repository.AppUserRepository;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;

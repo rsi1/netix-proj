@@ -1,4 +1,4 @@
-package cz.netix.netixbackend.model.security;
+package cz.netix.netixbackend.modules.identity.entity;
 
 import jakarta.persistence.*;
 

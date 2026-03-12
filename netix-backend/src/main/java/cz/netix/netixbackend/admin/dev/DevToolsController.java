@@ -1,6 +1,6 @@
 package cz.netix.netixbackend.admin.dev;
 
-import cz.netix.netixbackend.repository.security.AppUserRepository;
+import cz.netix.netixbackend.modules.identity.repository.AppUserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 

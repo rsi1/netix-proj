@@ -1,7 +1,7 @@
 package cz.netix.netixbackend.admin.dto;
 
-import cz.netix.netixbackend.model.security.AppRole;
-import cz.netix.netixbackend.model.security.AppUser;
+import cz.netix.netixbackend.modules.identity.entity.AppRole;
+import cz.netix.netixbackend.modules.identity.entity.AppUser;
 
 import java.util.List;
 

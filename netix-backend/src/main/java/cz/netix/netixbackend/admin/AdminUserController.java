@@ -1,6 +1,6 @@
 package cz.netix.netixbackend.admin;
 
-import cz.netix.netixbackend.repository.security.AppUserRepository;
+import cz.netix.netixbackend.modules.identity.repository.AppUserRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

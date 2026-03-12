@@ -1,6 +1,6 @@
-package cz.netix.netixbackend.service;
+package cz.netix.netixbackend.modules.identity.service;
 
-import cz.netix.netixbackend.repository.security.AppUserRepository;
+import cz.netix.netixbackend.modules.identity.repository.AppUserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
