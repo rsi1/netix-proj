@@ -28,19 +28,18 @@ export default function App() {
           <Route path="map-cz" element={<MapPage />} />
           <Route path="map-world" element={<MapsPage />} />
         </Route>
+<Route path="admin" element={<AdminLayout />}>
+  <Route path="login" element={<LoginPage />} />
+  <Route path="forbidden" element={<ForbiddenPage />} />
 
-        <Route path="admin" element={<AdminLayout />}>
-          <Route path="login" element={<LoginPage />} />
-          <Route path="forbidden" element={<ForbiddenPage />} />
-
-          <Route element={<RequireAdmin />}>
-            <Route index element={<AdminHome />} />
-            <Route path="dev" element={<DevToolsPage />} />
-            <Route path="dbtest" element={<DbTestPage />} />
-            <Route path="users" element={<AdminUsersPage />} />
-            <Route path="backend" element={<BackendTest />} />
-          </Route>
-        </Route>
+  <Route element={<RequireAdmin />}>
+    <Route index element={<AdminHome />} />
+    <Route path="dev" element={<DevToolsPage />} />
+    <Route path="dbtest" element={<DbTestPage />} />
+    <Route path="users" element={<AdminUsersPage />} />
+    <Route path="backend" element={<BackendTest />} />
+  </Route>
+</Route>
 
         <Route path="*" element={<NotFound />} />
       </Routes>
