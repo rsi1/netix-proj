@@ -3,11 +3,17 @@ import { useAuth } from "../auth/AuthContext";
 export default function AuthStatus() {
   const { state } = useAuth();
 
+  if (state.status === "loading") {
+    return <div>Loading...</div>;
+  }
+
+  if (state.status === "anon") {
+    return null; // ❗ schováme v adminu
+  }
+
   return (
     <div style={{ padding: 8, fontSize: 12, opacity: 0.85 }}>
-      {state.status === "loading" && "auth: loading…"}
-      {state.status === "anon" && "auth: anon"}
-      {state.status === "authed" && `auth: ${state.username} (${state.roles.join(", ")})`}
+      {state.username} ({state.roles.join(", ")})
     </div>
   );
 }

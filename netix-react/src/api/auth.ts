@@ -16,10 +16,14 @@ export async function login(username: string, password: string): Promise<void> {
 }
 
 export async function logout(): Promise<void> {
-  await fetch("/api/auth/logout", {
+  const res = await fetch("/api/auth/logout", {
     method: "POST",
     credentials: "include",
   });
+
+  if (!res.ok) {
+    throw new Error("Logout failed");
+  }
 }
 
 export async function me(): Promise<MeResponse> {
@@ -27,9 +31,13 @@ export async function me(): Promise<MeResponse> {
     credentials: "include",
   });
 
-  // 401 když nejsi přihlášen (podle tvého SecurityConfig)
-  if (res.status === 401) return { authenticated: false };
-  if (!res.ok) throw new Error("Failed to load /api/auth/me");
+  if (res.status === 401) {
+    return { authenticated: false };
+  }
+
+  if (!res.ok) {
+    throw new Error("Failed to load /api/auth/me");
+  }
 
   return (await res.json()) as MeResponse;
 }

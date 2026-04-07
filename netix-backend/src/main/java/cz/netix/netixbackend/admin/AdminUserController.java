@@ -1,10 +1,11 @@
 package cz.netix.netixbackend.admin;
 
+import cz.netix.netixbackend.admin.dto.UserRowDto;
 import cz.netix.netixbackend.modules.identity.repository.AppUserRepository;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import cz.netix.netixbackend.admin.dto.UserRowDto;
 
 import java.util.List;
 
@@ -24,5 +25,15 @@ public class AdminUserController {
                 .stream()
                 .map(UserRowDto::from)
                 .toList();
+    }
+
+    @GetMapping("/ping")
+    public String ping() {
+        return "admin ok";
+    }
+
+    @GetMapping("/whoami")
+    public Object whoami(Authentication auth) {
+        return auth.getAuthorities();
     }
 }

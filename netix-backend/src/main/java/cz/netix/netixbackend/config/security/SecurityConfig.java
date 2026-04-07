@@ -48,6 +48,7 @@ public class SecurityConfig {
                 .requestMatchers("/actuator/health").permitAll()
                 .requestMatchers("/api/auth/login").permitAll()
                 .requestMatchers("/api/auth/logout").permitAll()
+                .requestMatchers("/api/auth/me").permitAll()   // ✅ DŮLEŽITÉ
 
                 .requestMatchers("/api/admin/dev/hashcheck").permitAll()
                 .requestMatchers("/api/admin/dev/genhash").permitAll()

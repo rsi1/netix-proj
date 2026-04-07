@@ -2,25 +2,19 @@ import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { useAuth } from "./AuthContext";
 
 export default function RequireAdmin() {
-  const auth = useAuth();
+  const { state, hasRole } = useAuth();
   const location = useLocation();
 
-  if (auth.state.status === "loading") {
+  if (state.status === "loading") {
     return <div>Loading...</div>;
   }
 
-  if (auth.state.status === "anon") {
-    return (
-      <Navigate
-        to="/admin/login"
-        replace
-        state={{ from: location.pathname }}
-      />
-    );
+  if (state.status === "anon") {
+    return <Navigate to="/login" state={{ from: location }} replace />;
   }
 
-  if (!auth.hasRole("ADMIN")) {
-    return <Navigate to="/admin/forbidden" replace />;
+  if (!hasRole("ADMIN")) {
+    return <Navigate to="/forbidden" replace />;
   }
 
   return <Outlet />;

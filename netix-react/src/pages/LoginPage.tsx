@@ -1,48 +1,69 @@
-import React, { useState } from "react";
-import { useAuth } from "../auth/AuthContext";
+import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "../../auth/AuthContext";
 
 export default function LoginPage() {
   const { login } = useAuth();
-  const [username, setUsername] = useState("admin");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState<string | null>(null);
-
-  const nav = useNavigate();
+  const navigate = useNavigate();
   const location = useLocation();
-  const from = (location.state as any)?.from ?? "/admin";
 
-  const onSubmit = async (e: React.FormEvent) => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const from = location.state?.from?.pathname || "/admin";
+
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setError(null);
+    setError("");
+
     try {
       await login(username, password);
-      nav(from, { replace: true });
-    } catch {
+      navigate(from, { replace: true });
+    } catch (err) {
+      console.error(err);
       setError("Špatné jméno nebo heslo.");
     }
-  };
+  }
 
   return (
-    <div style={{ maxWidth: 420, margin: "60px auto" }}>
-      <h2>NETIX Login</h2>
+    <div style={{ maxWidth: 420, margin: "40px auto", padding: 24 }}>
+      <h1>Přihlášení</h1>
+      <p>Pro přístup do administrace se přihlaste.</p>
 
-      <form onSubmit={onSubmit}>
-        <div>
-          <label>Username</label>
-          <input value={username} onChange={(e) => setUsername(e.target.value)} />
+      <form onSubmit={handleSubmit}>
+        <div style={{ marginBottom: 12 }}>
+          <label htmlFor="username">Uživatel</label>
+          <br />
+          <input
+            id="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            autoComplete="username"
+            required
+          />
         </div>
 
-        <div style={{ marginTop: 12 }}>
-          <label>Password</label>
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+        <div style={{ marginBottom: 12 }}>
+          <label htmlFor="password">Heslo</label>
+          <br />
+          <input
+            id="password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            autoComplete="current-password"
+            required
+          />
         </div>
 
-        {error && <div style={{ marginTop: 12, color: "crimson" }}>{error}</div>}
+        <button type="submit">Přihlásit</button>
 
-        <button style={{ marginTop: 16 }} type="submit">
-          Přihlásit
-        </button>
+        {error && (
+          <p style={{ color: "red", marginTop: 12 }}>
+            {error}
+          </p>
+        )}
       </form>
     </div>
   );

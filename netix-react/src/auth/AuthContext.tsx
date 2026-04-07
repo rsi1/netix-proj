@@ -26,9 +26,10 @@ const Ctx = createContext<AuthCtx | null>(null);
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [state, setState] = useState<AuthState>({ status: "loading" });
 
-  const refresh = useCallback(async () => {
-    setState({ status: "loading" });
+const refresh = useCallback(async () => {
+  setState({ status: "loading" });
 
+  try {
     const r = await api.me();
 
     if (!r.authenticated || !r.username) {
@@ -41,7 +42,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       username: r.username,
       roles: r.roles ?? [],
     });
-  }, []);
+  } catch (err) {
+    console.error("Auth refresh failed:", err);
+    setState({ status: "anon" });
+  }
+}, []);
 
   const login = useCallback(
     async (username: string, password: string) => {

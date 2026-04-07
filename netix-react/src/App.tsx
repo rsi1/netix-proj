@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import RequireAdmin from "./auth/RequireAdmin";
 
 import Layout from "./components/Layout";
@@ -20,29 +20,31 @@ import MapsPage from "./pages/public/MapsPage";
 
 export default function App() {
   return (
-    <BrowserRouter basename="/app">
+    <HashRouter>
       <Routes>
+        {/* 🌐 PUBLIC */}
         <Route element={<Layout />}>
           <Route index element={<Home />} />
+          <Route path="login" element={<LoginPage />} />
+          <Route path="forbidden" element={<ForbiddenPage />} />
           <Route path="edesky" element={<EDeskyPage />} />
           <Route path="map-cz" element={<MapPage />} />
           <Route path="map-world" element={<MapsPage />} />
         </Route>
-<Route path="admin" element={<AdminLayout />}>
-  <Route path="login" element={<LoginPage />} />
-  <Route path="forbidden" element={<ForbiddenPage />} />
 
-  <Route element={<RequireAdmin />}>
-    <Route index element={<AdminHome />} />
-    <Route path="dev" element={<DevToolsPage />} />
-    <Route path="dbtest" element={<DbTestPage />} />
-    <Route path="users" element={<AdminUsersPage />} />
-    <Route path="backend" element={<BackendTest />} />
-  </Route>
-</Route>
+        {/* 🔐 ADMIN */}
+        <Route element={<RequireAdmin />}>
+          <Route path="admin" element={<AdminLayout />}>
+            <Route index element={<AdminHome />} />
+            <Route path="dev" element={<DevToolsPage />} />
+            <Route path="dbtest" element={<DbTestPage />} />
+            <Route path="backend" element={<BackendTest />} />
+            <Route path="users" element={<AdminUsersPage />} />
+          </Route>
+        </Route>
 
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
