@@ -21,8 +21,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import lombok.extern.slf4j.Slf4j;
-
 @Configuration
 public class SecurityConfig {
 

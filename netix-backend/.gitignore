@@ -25,6 +25,9 @@ target/
 .idea/
 *.iml
 
+
+node_modules/
+
 ########################################
 # LOGS / RUNTIME
 ########################################
@@ -47,3 +50,72 @@ application-test.properties
 
 tmp/
 *.tmp
+
+
+########################################
+# MAVEN / JAVA BUILD ARTIFACTS
+########################################
+
+target/
+*.class
+*.jar
+*.war
+*.ear
+
+# Maven Wrapper (keep scripts, ignore internal cache)
+.mvn/wrapper/maven-wrapper.jar
+
+########################################
+# NODE / FRONTEND
+########################################
+
+node_modules/
+dist/
+
+########################################
+# IDE METADATA
+########################################
+
+# Eclipse
+.classpath
+.project
+.settings/
+.factorypath
+
+# IntelliJ
+.idea/
+*.iml
+
+# VS Code (volitelné)
+.vscode/
+
+
+########################################
+# PRODUCTION (NAS) - VERY IMPORTANT
+########################################
+
+# real production config (NEcommitovat)
+deploy/nas/config/application-prod.properties
+**/application-prod.properties
+
+# runtime NAS files
+deploy/nas/runtime/
+
+
+########################################
+# LOGS / RUNTIME
+########################################
+
+*.log
+logs/
+
+########################################
+# ENVIRONMENT FILES
+########################################
+
+.env
+*.env
+Thumbs.db
+.DS_Store
+application-local.properties
+application-test.properties
