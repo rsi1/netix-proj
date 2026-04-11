@@ -17,7 +17,9 @@ public class WebConfig {
         config.setAllowedOrigins(List.of(
                 "http://localhost:5173",
                 "http://127.0.0.1:5173",
-                "https://app.neti.cz"
+                "https://app.neti.cz",
+                "https://neti.cz",
+                "https://www.neti.cz"
         ));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
