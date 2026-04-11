@@ -1,3 +1,5 @@
+const API_BASE = import.meta.env.VITE_API_BASE || "";
+
 import { useState } from "react";
 
 export default function DbTestPage() {
@@ -5,7 +7,7 @@ export default function DbTestPage() {
 
   const testDb = async () => {
     try {
-      const res = await fetch("api/admin/dev/dbtest", {
+      const res = await fetch(`${API_BASE}/api/admin/dev/dbtest`, {
         credentials: "include",
       });
 

@@ -1,3 +1,5 @@
+const API_BASE = import.meta.env.VITE_API_BASE || "";
+
 import { useEffect, useState } from "react";
 
 interface User {
@@ -10,7 +12,7 @@ export default function AdminUsersPage() {
   const [users, setUsers] = useState<User[]>([]);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/users`, {
+    fetch(`${API_BASE}/api/admin/users`, {
       credentials: "include",
     })
       .then(res => res.json())

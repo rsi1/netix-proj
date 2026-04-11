@@ -1,3 +1,5 @@
+const API_BASE = import.meta.env.VITE_API_BASE || "";
+
 export type MeResponse = {
   authenticated: boolean;
   username?: string;
@@ -5,7 +7,7 @@ export type MeResponse = {
 };
 
 export async function me(): Promise<MeResponse> {
-  const res = await fetch("/api/auth/me", {
+  const res = await fetch(`${API_BASE}/api/auth/me`, {
     credentials: "include",
   });
 
@@ -21,7 +23,7 @@ export async function login(username: string, password: string): Promise<void> {
   params.append("username", username);
   params.append("password", password);
 
-  const res = await fetch("/api/auth/login", {
+  const res = await fetch(`${API_BASE}/api/auth/login`, {
     method: "POST",
     body: params,
     credentials: "include",

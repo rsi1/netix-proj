@@ -1,3 +1,4 @@
+const API_BASE = import.meta.env.VITE_API_BASE || "";
 
 import { useState } from "react";
 
@@ -17,7 +18,7 @@ export default function EDeskyPage() {
 
     try {
       const res = await fetch(
-        `/api/edesky/search?text=${encodeURIComponent(text)}`
+        `${API_BASE}/api/edesky/search?text=${encodeURIComponent(text)}`
       );
 
       if (!res.ok) {
