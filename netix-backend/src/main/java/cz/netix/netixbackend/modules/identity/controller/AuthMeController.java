@@ -1,4 +1,4 @@
-package cz.netix.netixbackend.api.auth;
+package cz.netix.netixbackend.modules.identity.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
