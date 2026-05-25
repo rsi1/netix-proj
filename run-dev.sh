@@ -2,6 +2,8 @@
 
 echo "🔍 Spouštím Netix dev prostředí..."
 
+#   export SPRING_PROFILES_ACTIVE=dev
+
 # === Funkce: Spustí backend ===
 run_backend() {
     echo "⚙️  Spouštím Spring Boot backend..."
