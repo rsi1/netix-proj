@@ -16,8 +16,17 @@ export default function NotesPage() {
 
   const loadNotes = () => {
     fetch("/api/notes")
-      .then((res) => res.json())
-      .then((data) => setNotes(data));
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Poznámky se nepodařilo načíst.");
+        }
+
+        return res.json();
+      })
+      .then((data: Note[]) => setNotes(data))
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   useEffect(() => {
@@ -45,12 +54,35 @@ export default function NotesPage() {
     setEditingNote(null);
   };
 
+  const handleDelete = async (id: number) => {
+    try {
+      const response = await fetch(`/api/notes/${id}`, {
+        method: "DELETE",
+      });
+
+      if (!response.ok) {
+        throw new Error("Poznámku se nepodařilo smazat.");
+      }
+
+      setNotes((currentNotes) =>
+        currentNotes.filter((note) => note.id !== id),
+      );
+
+      if (editingNote?.id === id) {
+        setEditingNote(null);
+      }
+    } catch (error) {
+      console.error(error);
+      window.alert("Poznámku se nepodařilo smazat.");
+    }
+  };
+
   return (
     <div>
       <h1>Poznámky</h1>
 
       {!editingNote && (
-        <button onClick={handleNew}>
+        <button type="button" onClick={handleNew}>
           Nová poznámka
         </button>
       )}
@@ -69,6 +101,7 @@ export default function NotesPage() {
         <NoteList
           notes={notes}
           onEdit={handleEdit}
+          onDelete={handleDelete}
         />
       </div>
     </div>

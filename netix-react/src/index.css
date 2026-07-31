@@ -29,7 +29,7 @@ body {
 }
 
 h1 {
-  font-size: 1.1 ;
+  font-size: 2rem;
   line-height: 1.1;
 }
 
@@ -62,5 +62,158 @@ button:focus-visible {
   }
   button {
     background-color: #f9f9f9;
+  }
+}
+/* Seznam poznámek */
+.note-item {
+  display: grid;
+  grid-template-columns: minmax(140px, 220px) 1fr;
+  align-items: center;
+  gap: 24px;
+
+  width: 100%;
+  padding: 14px 18px;
+  box-sizing: border-box;
+
+  background-color: rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+}
+
+.note-item h3,
+.note-item p {
+  margin: 0;
+}
+
+.note-item h3 {
+  font-size: 1.1rem;
+}
+
+.note-item p {
+  min-width: 0;
+}
+
+/* Na úzkém telefonu se obsah bezpečně zalomí */
+@media (max-width: 600px) {
+  .note-item {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+}
+
+.note-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.note-row {
+  display: grid;
+  grid-template-columns: minmax(140px, 220px) minmax(200px, 1fr) auto;
+  align-items: center;
+  gap: 20px;
+
+  width: 100%;
+  padding: 12px 16px;
+  box-sizing: border-box;
+
+  background-color: rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+}
+
+.note-title {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.note-text {
+  min-width: 0;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.note-edit-button {
+  white-space: nowrap;
+}
+
+/* Mobilní zobrazení */
+@media (max-width: 650px) {
+  .note-row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .note-edit-button {
+    width: fit-content;
+  }
+}
+
+.note-actions {
+  display: flex;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.delete-button {
+  background-color: #b42318;
+  color: white;
+}
+
+.delete-button:hover {
+  background-color: #912018;
+  border-color: #ff8a80;
+}
+
+.note-form {
+  max-width: 850px;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+}
+
+.note-form h2 {
+  margin-top: 0;
+}
+
+.note-form-fields {
+  display: grid;
+  grid-template-columns: minmax(180px, 260px) minmax(280px, 1fr);
+  gap: 16px;
+}
+
+.note-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-weight: 600;
+}
+
+.note-form input,
+.note-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  font: inherit;
+}
+
+.note-form textarea {
+  min-height: 44px;
+  resize: vertical;
+}
+
+.note-form-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.form-error {
+  color: #ffd4d4;
+  font-weight: 600;
+}
+
+@media (max-width: 700px) {
+  .note-form-fields {
+    grid-template-columns: 1fr;
   }
 }

@@ -76,14 +76,13 @@ export default function NoteForm({
     }
   };
 
-  return (
-    <form onSubmit={handleSubmit}>
-      <h2>
-        {note?.id
-          ? "Upravit poznámku"
-          : "Nová poznámka"}
-      </h2>
+return (
+  <form className="note-form" onSubmit={handleSubmit}>
+    <h2>
+      {note?.id ? "Upravit poznámku" : "Nová poznámka"}
+    </h2>
 
+    <div className="note-form-fields">
       <label>
         Název
         <input
@@ -106,21 +105,25 @@ export default function NoteForm({
           required
         />
       </label>
+    </div>
 
-      {error && <p role="alert">{error}</p>}
+    {error && (
+      <p className="form-error" role="alert">
+        {error}
+      </p>
+    )}
 
+    <div className="note-form-actions">
       <button type="submit">
         {note?.id ? "Uložit změny" : "Přidat"}
       </button>
 
-      {note?.id && (
-        <button
-          type="button"
-          onClick={onCancel}
-        >
+      {onCancel && (
+        <button type="button" onClick={onCancel}>
           Zrušit
         </button>
       )}
-    </form>
-  );
+    </div>
+  </form>
+);
 }

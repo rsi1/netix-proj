@@ -7,20 +7,52 @@ type Note = {
 type Props = {
   notes: Note[];
   onEdit: (note: Note) => void;
+  onDelete: (id: number) => void;
 };
 
-export default function NoteList({ notes, onEdit }: Props) {
+export default function NoteList({
+  notes,
+  onEdit,
+  onDelete,
+}: Props) {
+  function handleDelete(note: Note) {
+    const confirmed = window.confirm(
+      `Opravdu chcete smazat poznámku „${note.title}“?`,
+    );
+
+    if (confirmed) {
+      onDelete(note.id);
+    }
+  }
+
   return (
-    <div>
+    <div className="note-list">
       {notes.map((note) => (
-        <div key={note.id} style={{ marginBottom: "30px" }}>
-          <h2>{note.title}</h2>
+        <div className="note-row" key={note.id}>
+          <h2 className="note-title">
+            {note.title || "Bez názvu"}
+          </h2>
 
-          <p>{note.text}</p>
+          <p className="note-text">
+            {note.text || "Bez textu"}
+          </p>
 
-          <button type="button" onClick={() => onEdit(note)}>
-            Upravit
-          </button>
+          <div className="note-actions">
+            <button
+              type="button"
+              onClick={() => onEdit(note)}
+            >
+              Upravit
+            </button>
+
+            <button
+              className="delete-button"
+              type="button"
+              onClick={() => handleDelete(note)}
+            >
+              Smazat
+            </button>
+          </div>
         </div>
       ))}
     </div>
