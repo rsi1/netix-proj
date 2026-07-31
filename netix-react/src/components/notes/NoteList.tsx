@@ -1,5 +1,3 @@
-import NoteItem from "./NoteItem";
-
 type Note = {
   id: number;
   title: string;
@@ -8,13 +6,22 @@ type Note = {
 
 type Props = {
   notes: Note[];
+  onEdit: (note: Note) => void;
 };
 
-export default function NoteList({ notes }: Props) {
+export default function NoteList({ notes, onEdit }: Props) {
   return (
     <div>
       {notes.map((note) => (
-        <NoteItem key={note.id} note={note} />
+        <div key={note.id} style={{ marginBottom: "30px" }}>
+          <h2>{note.title}</h2>
+
+          <p>{note.text}</p>
+
+          <button type="button" onClick={() => onEdit(note)}>
+            Upravit
+          </button>
+        </div>
       ))}
     </div>
   );
