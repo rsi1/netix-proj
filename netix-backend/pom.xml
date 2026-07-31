@@ -7,11 +7,11 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <!-- Spring Boot řídí verze většiny knihoven -->
+    <!-- Spring Boot řídí kompatibilní verze většiny knihoven -->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.5.14</version>
+        <version>3.5.16</version>
         <relativePath/>
     </parent>
 

@@ -23,9 +23,11 @@ public class NoteController {
     }
 
     @PostMapping
-    public Note create(@RequestBody Note note) {
+    public Note create(@RequestBody Note dto) {
         Instant now = Instant.now();
-        note.setId(null);
+        Note note = new Note();
+        note.setTitle(dto.getTitle());
+        note.setText(dto.getText());
         note.setCreatedAt(now);
         note.setUpdatedAt(now);
 
@@ -35,6 +37,7 @@ public class NoteController {
         return saved;
     }
 
+    @SuppressWarnings("null")
     @PutMapping("/{id}")
     public Note update(@PathVariable Long id, @RequestBody Note input) {
         Note note = noteRepo.findById(id).orElseThrow();
@@ -49,6 +52,7 @@ public class NoteController {
         return saved;
     }
 
+    @SuppressWarnings("null")
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
         Note note = noteRepo.findById(id).orElseThrow();
