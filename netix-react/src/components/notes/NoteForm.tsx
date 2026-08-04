@@ -4,6 +4,10 @@ import {
   type FormEvent,
 } from "react";
 
+const API_BASE = import.meta.env.PROD
+  ? "https://api.neti.cz"
+  : "";
+
 type Note = {
   id: number;
   title: string;
@@ -38,8 +42,8 @@ export default function NoteForm({
     setError("");
 
     const url = note?.id
-      ? `/api/notes/${note.id}`
-      : "/api/notes";
+      ? `${API_BASE}/api/notes/${note.id}`
+      : `${API_BASE}/api/notes`;
 
     const method = note?.id ? "PUT" : "POST";
 

@@ -3,6 +3,10 @@ import { useEffect, useState } from "react";
 import NoteList from "../components/notes/NoteList";
 import NoteForm from "../components/notes/NoteForm";
 
+const API_BASE = import.meta.env.PROD
+  ? "https://api.neti.cz"
+  : "";
+
 type Note = {
   id: number;
   title: string;
@@ -15,10 +19,14 @@ export default function NotesPage() {
     useState<Note | null>(null);
 
   const loadNotes = () => {
-    fetch("/api/notes")
+    fetch(`${API_BASE}/api/notes`, {
+      credentials: "include",
+    })
       .then((res) => {
         if (!res.ok) {
-          throw new Error("Poznámky se nepodařilo načíst.");
+          throw new Error(
+            `Poznámky se nepodařilo načíst: HTTP ${res.status}`,
+          );
         }
 
         return res.json();
@@ -56,12 +64,18 @@ export default function NotesPage() {
 
   const handleDelete = async (id: number) => {
     try {
-      const response = await fetch(`/api/notes/${id}`, {
-        method: "DELETE",
-      });
+      const response = await fetch(
+        `${API_BASE}/api/notes/${id}`,
+        {
+          method: "DELETE",
+          credentials: "include",
+        },
+      );
 
       if (!response.ok) {
-        throw new Error("Poznámku se nepodařilo smazat.");
+        throw new Error(
+          `Poznámku se nepodařilo smazat: HTTP ${response.status}`,
+        );
       }
 
       setNotes((currentNotes) =>
