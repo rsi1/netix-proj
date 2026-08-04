@@ -1,12 +1,10 @@
+import { apiFetch } from "../../api/apiFetch";
+
 import {
   useEffect,
   useState,
   type FormEvent,
 } from "react";
-
-const API_BASE = import.meta.env.PROD
-  ? "https://api.neti.cz"
-  : "";
 
 type Note = {
   id: number;
@@ -41,14 +39,11 @@ export default function NoteForm({
     event.preventDefault();
     setError("");
 
-    const url = note?.id
-      ? `${API_BASE}/api/notes/${note.id}`
-      : `${API_BASE}/api/notes`;
-
+    const path = note?.id ? `/api/notes/${note.id}` : `/api/notes`;
     const method = note?.id ? "PUT" : "POST";
 
     try {
-      const response = await fetch(url, {
+      const response = await apiFetch(path, {
         method,
         headers: {
           "Content-Type": "application/json",
@@ -89,7 +84,7 @@ return (
     <div className="note-form-fields">
       <label>
         Název
-        <input
+<input
           type="text"
           value={title}
           onChange={(event) =>

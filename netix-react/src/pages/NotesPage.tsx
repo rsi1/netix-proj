@@ -1,11 +1,7 @@
 import { useEffect, useState } from "react";
-
+import { apiFetch } from "../api/apiFetch";
 import NoteList from "../components/notes/NoteList";
 import NoteForm from "../components/notes/NoteForm";
-
-const API_BASE = import.meta.env.PROD
-  ? "https://api.neti.cz"
-  : "";
 
 type Note = {
   id: number;
@@ -19,9 +15,7 @@ export default function NotesPage() {
     useState<Note | null>(null);
 
   const loadNotes = () => {
-    fetch(`${API_BASE}/api/notes`, {
-      credentials: "include",
-    })
+    apiFetch("/api/notes")
       .then((res) => {
         if (!res.ok) {
           throw new Error(
@@ -64,13 +58,9 @@ export default function NotesPage() {
 
   const handleDelete = async (id: number) => {
     try {
-      const response = await fetch(
-        `${API_BASE}/api/notes/${id}`,
-        {
-          method: "DELETE",
-          credentials: "include",
-        },
-      );
+      const response = await apiFetch(`/api/notes/${id}`, {
+        method: "DELETE",
+      });
 
       if (!response.ok) {
         throw new Error(
