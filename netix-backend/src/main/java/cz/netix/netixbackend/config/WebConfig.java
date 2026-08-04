@@ -16,12 +16,14 @@ public class WebConfig {
             public void addCorsMappings(@NonNull CorsRegistry registry) {
                 registry.addMapping("/**")
                         .allowedOrigins(
+                                "https://neti.cz",
                                 "http://localhost:5173",
                                 "http://127.0.0.1:5173"
                         )
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
-                        .allowCredentials(true);
+                        .allowCredentials(true) 
+                        .maxAge(3600);
             }
         };
     }
