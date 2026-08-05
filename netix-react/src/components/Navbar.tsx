@@ -47,10 +47,6 @@ export default function Navbar() {
           DB Test
         </Link>
 
-        <Link to="/backend" style={linkStyle}>
-          Backend Test
-        </Link>
-
         <Link to="/edesky" style={linkStyle}>
           eDesky
         </Link>
