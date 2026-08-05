@@ -9,36 +9,32 @@ export default function Navbar() {
   const { user, loading, logout } = useAuth();
   const navigate = useNavigate();
 
-const handleSwitchAccount = async () => {
-  await logout();
-  navigate("/login", { replace: true });
-};
+  const handleSwitchAccount = async () => {
+    await logout();
+    navigate("/login", { replace: true });
+  };
 
   const linkStyle = {
+    display: "inline-block",
     color: "white",
     textDecoration: "none",
+    padding: "10px 12px",
+    marginRight: 8,
+    marginBottom: 8,
+    background: "#1d6478",
+    borderRadius: 4,
   };
 
   return (
     <nav
       style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        flexWrap: "wrap",
-        gap: 16,
+        display: "block",
         padding: 16,
         background: "#155264",
+        color: "white",
       }}
     >
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          flexWrap: "wrap",
-          gap: 20,
-        }}
-      >
+      <div style={{ display: "block" }}>
         <Link to="/" style={linkStyle}>
           Home
         </Link>
@@ -66,19 +62,17 @@ const handleSwitchAccount = async () => {
 
       <div
         style={{
-          display: "flex",
-          alignItems: "center",
-          gap: 12,
+          display: "block",
+          marginTop: 8,
           color: "white",
         }}
       >
         {loading ? (
-          <span>Ověřuji přihlášení…</span>
+          <span>Ověřuji přihlášení...</span>
         ) : user ? (
-          <>
-            <span>
-              Přihlášen:{" "}
-              <strong>{user.username}</strong>
+          <div>
+            <span style={{ marginRight: 12 }}>
+              Přihlášen: <strong>{user.username}</strong>
 
               {user.roles.length > 0 && (
                 <small>
@@ -98,27 +92,19 @@ const handleSwitchAccount = async () => {
               type="button"
               onClick={handleSwitchAccount}
               style={{
-                padding: "7px 12px",
+                padding: "9px 14px",
                 color: "white",
                 background: "#1d2930",
-                border: "1px solid rgba(255,255,255,0.35)",
-                borderRadius: 6,
+                border: "1px solid #809097",
+                borderRadius: 4,
                 cursor: "pointer",
               }}
             >
               Změnit účet
             </button>
-          </>
+          </div>
         ) : (
-          <Link
-            to="/login"
-            style={{
-              ...linkStyle,
-              padding: "7px 12px",
-              background: "#1d2930",
-              borderRadius: 6,
-            }}
-          >
+          <Link to="/login" style={linkStyle}>
             Přihlásit
           </Link>
         )}
