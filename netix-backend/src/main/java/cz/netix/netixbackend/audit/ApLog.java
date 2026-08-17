@@ -1,4 +1,4 @@
-package cz.netix.netixbackend.notes;
+package cz.netix.netixbackend.audit;
 
 import jakarta.persistence.*;
 import java.time.Instant;

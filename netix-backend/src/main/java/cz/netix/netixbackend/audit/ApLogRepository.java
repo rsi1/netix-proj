@@ -1,4 +1,4 @@
-package cz.netix.netixbackend.notes;
+package cz.netix.netixbackend.audit;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
