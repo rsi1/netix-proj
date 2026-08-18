@@ -4,6 +4,7 @@
   "words": [
     "databind",
     "fasterxml",
+    "netixbackend",
     "projectlombok"
   ],
   "ignorePaths": [

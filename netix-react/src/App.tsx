@@ -14,6 +14,7 @@ import DbTestPage from "./pages/DbTestPage";
 import EDeskyPage from "./pages/EDeskyPage";
 import NotesPage from "./pages/NotesPage";
 import LoginPage from "./pages/LoginPage";
+import AuditPage from "./pages/AuditPage";
 
 export default function App() {
   return (
@@ -30,6 +31,8 @@ export default function App() {
         <Route
           path="/dbtest"
           element={<DbTestPage />}
+        />
+        <Route path="/audit" element={<AuditPage />} 
         />
         <Route
           path="/edesky"

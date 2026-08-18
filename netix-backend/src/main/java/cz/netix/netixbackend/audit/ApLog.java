@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import java.time.Instant;
 
 @Entity
-@Table(name = "ap_log")
+@Table(name = "audit_log")
 public class ApLog {
 
     @Id
