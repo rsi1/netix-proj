@@ -15,6 +15,7 @@ import EDeskyPage from "./pages/EDeskyPage";
 import NotesPage from "./pages/NotesPage";
 import LoginPage from "./pages/LoginPage";
 import AuditPage from "./pages/AuditPage";
+import RequireRole from "./components/RequireRole";
 
 export default function App() {
   return (
@@ -32,7 +33,13 @@ export default function App() {
           path="/dbtest"
           element={<DbTestPage />}
         />
-        <Route path="/audit" element={<AuditPage />} 
+        <Route
+          path="/admin/audit"
+          element={ 
+            <RequireRole role="ROLE_AUDIT">
+              <AuditPage />
+            </RequireRole>
+          }
         />
         <Route
           path="/edesky"

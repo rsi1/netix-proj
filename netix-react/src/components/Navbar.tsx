@@ -47,6 +47,12 @@ export default function Navbar() {
           DB Test
         </Link>
 
+        {user?.roles.includes("ROLE_AUDIT") && (
+          <Link to="/admin/audit" style={linkStyle}>
+            Audit
+          </Link>
+        )}
+
         <Link to="/edesky" style={linkStyle}>
           eDesky
         </Link>
