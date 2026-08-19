@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { apiFetch } from "../api/apiFetch";
 
 type AuditLog = {
   id: number;
@@ -14,15 +15,14 @@ export default function AuditPage() {
   const [logs, setLogs] = useState<AuditLog[]>([]);
   const [error, setError] = useState("");
 
+
   useEffect(() => {
-    fetch("/api/audit", {
-      credentials: "include",
-    })
+    apiFetch("/api/audit")
       .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP ${response.status}`);
-        }
-        return response.json();
+      if (!response.ok) {
+        throw new Error(`HTTP error ${response.status}`);
+      }
+      return response.json();
       })
       .then((data) => setLogs(data))
       .catch((err) => setError(err.message));
