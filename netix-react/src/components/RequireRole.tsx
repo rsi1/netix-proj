@@ -1,15 +1,16 @@
 import { Navigate } from "react-router-dom";
 import { useAuth } from "../auth/AuthContext";
+import type { ReactNode } from "react";
 
 type Props = {
   role: string;
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 export default function RequireRole({
   role,
   children,
-}: Props) {
+}: Props): JSX.Element | null {
   const { user, loading } = useAuth();
 
   if (loading) {
@@ -24,5 +25,5 @@ export default function RequireRole({
     return <div>Nemáte oprávnění k této stránce.</div>;
   }
 
-  return children;
+  return <>{children}</>;
 }
