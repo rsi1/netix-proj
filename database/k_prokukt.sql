@@ -1,0 +1,21 @@
+CREATE TABLE netx.k_prokukt (
+    id BIGINT NOT NULL AUTO_INCREMENT,
+
+    kod VARCHAR(30) NOT NULL,
+    nazev VARCHAR(150) NOT NULL,
+    popis VARCHAR(500) NULL,
+
+    hmotnost DECIMAL(10,3) NULL,
+    jednotka VARCHAR(10) NOT NULL DEFAULT 'KG',
+
+    cena DECIMAL(12,2) NULL,
+
+    aktivni BOOLEAN NOT NULL DEFAULT TRUE,
+
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP,
+
+    PRIMARY KEY (id),
+    UNIQUE KEY uk_k_produkt_kod (kod)
+);

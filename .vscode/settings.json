@@ -9,5 +9,22 @@
     "java.configuration.updateBuildConfiguration": "automatic",
     "java.compile.nullAnalysis.mode": "automatic",
     "maven.view": "hierarchical",
-    "java.dependency.packagePresentation": "hierarchical"
+    "java.dependency.packagePresentation": "hierarchical",
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "ssh": "Disabled",
+            "previewLimit": 50,
+            "server": "192.168.3.31",
+            "port": 3306,
+            "driver": "MariaDB",
+            "name": "netx",
+            "database": "netx",
+            "username": "dev",
+            "askForPassword": true
+        }
+    ]
 }
